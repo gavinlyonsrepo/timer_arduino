@@ -49,7 +49,7 @@ You will need following parts.
 Features
 ----------------------
 
-![ScreenShot schematic](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/images/tm1637.jpg)
+![ScreenShot schematic](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/eagle/tm1637.jpg)
 
 The user selects the time form 1-99 with minutes with the pot then starts with the pushbutton.
 Time remaining is displayed on seven segment display. When finished the buzzer is activated and done displayed on 7-seg
