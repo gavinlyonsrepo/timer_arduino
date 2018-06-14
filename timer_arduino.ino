@@ -2,8 +2,8 @@
 /*
   Name : Timer_arduino
   Desc: Countdown Timer, arduino based.
-  Title : Countdown Timer: 1-99 minutes. Output(mm:ss) to seven segment display(TM1637) and Buzzer. 
-  Push button start.  10K  Pot time select input. 
+  Title : Countdown Timer: 1-99 minutes. Output(mm:ss) to seven segment display(TM1637) and Buzzer.
+  Push button start.  10K  Pot time select input.
   Author: Gavin Lyons
   URL:https://github.com/gavinlyonsrepo/timer_arduino
 */
@@ -33,8 +33,6 @@ int buzzer = 9;//the pin of the active buzzer
 Button btn_start(btn_start_pin);
 int count_start = 0;
 
-//pot pin Analog A0
-int potPin = 0;
 
 // time calc
 #define numberOfSeconds(_time_) ((_time_ / 1000) % 60)
@@ -42,6 +40,14 @@ int potPin = 0;
 // hold time selected in ms.
 unsigned long timeLimit = 0;
 
+//pot pin Analog A0
+int potPin = 0;
+// Varibles to Sample and smooth the A0 input from pot to reduce gitter on display
+// Define the number of samples to keep track of. The higher the number, the
+const int numReadings = 10;
+int readings[numReadings];      // the readings from the analog input
+int readIndex = 0;              // the index of the current reading
+int total = 0;                  // the running total
 
 //*************************** SETUP ************************
 void setup() {
@@ -63,6 +69,11 @@ void setup() {
   //buzzer
   pinMode(buzzer, OUTPUT); //initialize the buzzer pin as an output
   digitalWrite(buzzer, LOW);
+
+  // initialize all the readings in array to 0:
+  for (int thisReading = 0; thisReading < numReadings; thisReading++) {
+    readings[thisReading] = 0;
+  }
 }
 
 //******************* MAIN LOOP *****************
@@ -84,7 +95,7 @@ void loop() {
 
 // ********************* FUNCTIONS *************************
 
-// TestButton:  Function to handle button press 
+// TestButton:  Function to handle button press
 void TestButton()
 {
   Serial.print("Count: ");
@@ -98,15 +109,27 @@ void TestButton()
 }
 
 // potRead: Function to read analog pin connected to pot and display it in 7-seg
+// includes smoothing the analog sample by taking avergae of 10 readings
 void potRead()
 {
-    unsigned long val = 0;
-    val = map(analogRead(potPin), 0, 1023, 1, 99);
-    Serial.println(val);
-    timeLimit = ((val * 60) * 1000);
-    val = val * 100 ;
-    display.showNumberDecEx(val, 0x40, true);
-    delay(500);
+  unsigned long average = 0; 
+  // subtract the last reading:
+  total = total - readings[readIndex];
+  readings[readIndex] = map(analogRead(potPin), 0, 1023, 1, 99);
+  // increment total and array
+  total = total + readings[readIndex];
+  readIndex = readIndex + 1;
+  // check for end of array, wrap to start if yes
+  if (readIndex >= numReadings) {
+    readIndex = 0;
+  }
+  average = total / numReadings;
+  Serial.println(average);
+  Serial.println(total);
+  timeLimit = ((average * 60) * 1000);
+  average = average * 100 ;
+  display.showNumberDecEx(average, 0x40, true);
+  delay(100);
 }
 
 //my_buzzer: function to switch on buzzer and display "done" on 7-seg
@@ -114,21 +137,21 @@ void my_buzzer (void)
 {
   unsigned char i;
   unsigned char j;
-  
- const uint8_t SEG_DONE[] = {
-  SEG_B | SEG_C | SEG_D | SEG_E | SEG_G,           // d
-  SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F,   // O
-  SEG_C | SEG_E | SEG_G,                           // n
-  SEG_A | SEG_D | SEG_E | SEG_F | SEG_G            // E
+
+  const uint8_t SEG_DONE[] = {
+    SEG_B | SEG_C | SEG_D | SEG_E | SEG_G,           // d
+    SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F,   // O
+    SEG_C | SEG_E | SEG_G,                           // n
+    SEG_A | SEG_D | SEG_E | SEG_F | SEG_G            // E
   };
   display.setSegments(SEG_DONE);
   // run for 250*1400ms = 3.5 minutes
   for (j = 0; j < 250; j++)
-  {   
-     Serial.println(j);
+  {
+    Serial.println(j);
     //output an frequency
     for (i = 0; i < 100; i++)
-    {   
+    {
       digitalWrite(buzzer, HIGH);
       delay(1);//wait for 1ms
       digitalWrite(buzzer, LOW);
@@ -142,7 +165,7 @@ void my_buzzer (void)
       digitalWrite(buzzer, LOW);
       delay(2);//wait for 2ms
     }
-  } 
+  }
 }
 
 // countdown: function to handle and display the countdown time
