@@ -14,9 +14,6 @@
 // Version 1.1.0
 #include <TM1637Display.h> // Tm1637 module
 
-// https://github.com/JChristensen/JC_Button
-// Version 2.0-1
-#include <JC_Button.h> // push button lib
 
 //*************************** GLOBALS ********************
 
@@ -29,8 +26,13 @@ TM1637Display display(CLK, DIO);
 int buzzer = 9;//the pin of the active buzzer
 
 // Button
-#define btn_start_pin 2
-Button btn_start(btn_start_pin);
+#define buttonPin 2
+int buttonState;             // the current reading from the input pin
+int lastButtonState = HIGH;   // the previous reading from the input pin
+// the following variables are unsigned longs because the time, measured in
+// milliseconds, will quickly become a bigger number than can be stored in an int.
+unsigned long lastDebounceTime = 0;  // the last time the output pin was toggled
+unsigned long debounceDelay = 50;    // the debounce time; increase if the output flickers
 int count_start = 0;
 
 
@@ -60,8 +62,7 @@ void setup() {
 
   // button setup
   // Setup pins for button enable internal pull-up resistors
-  digitalWrite(btn_start_pin, HIGH);
-  btn_start.begin();
+  digitalWrite(buttonPin, HIGH);
 
   //display setup
   display.setBrightness(0x0c);
@@ -78,18 +79,33 @@ void setup() {
 
 //******************* MAIN LOOP *****************
 void loop() {
+  // read the pot
   if (count_start == 0)
   {
     potRead();
   }
 
-  // start button press
-  if (btn_start.read()) {
-    if (btn_start.wasPressed())
-    {
-      TestButton();
+  // read and debounce push button.
+  int reading = digitalRead(buttonPin);
+  // If the switch changed?
+  if (reading != lastButtonState) {
+    // reset the debouncing timer
+    lastDebounceTime = millis();
+  }
+
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    // if the button state has changed:
+    if (reading != buttonState) {
+      buttonState = reading;
+      // start timer if the new button state is low
+      if (buttonState == LOW) {
+        TestButton();
+      }
     }
   }
+
+  // save the reading.
+  lastButtonState = reading;
   delay(5);
 }
 
@@ -112,7 +128,7 @@ void TestButton()
 // includes smoothing the analog sample by taking avergae of 10 readings
 void potRead()
 {
-  unsigned long average = 0; 
+  unsigned long average = 0;
   // subtract the last reading:
   total = total - readings[readIndex];
   readings[readIndex] = map(analogRead(potPin), 0, 1023, 1, 99);
@@ -125,7 +141,6 @@ void potRead()
   }
   average = total / numReadings;
   Serial.println(average);
-  Serial.println(total);
   timeLimit = ((average * 60) * 1000);
   average = average * 100 ;
   display.showNumberDecEx(average, 0x40, true);
@@ -148,7 +163,6 @@ void my_buzzer (void)
   // run for 250*1400ms = 3.5 minutes
   for (j = 0; j < 250; j++)
   {
-    Serial.println(j);
     //output an frequency
     for (i = 0; i < 100; i++)
     {

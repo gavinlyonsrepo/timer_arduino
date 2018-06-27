@@ -3,19 +3,17 @@ Overview
 --------------------------------------------
 * Name: timer_arduino
 * Title : Countdown Timer, arduino based. 
-* Description: Countdown Timer: 1-99 minutes. Output(mm:ss) to seven segment display(TM1637) and Buzzer.
-Push button to start.  10K Pot used for time select input. 
+* Description: Countdown Timer: Range 1-99 minutes. 
+Output time (mm:ss) to seven segment display(TM1637) and Audio to Buzzer.
+Input: Push button to start.  10K Pot used for time select.
 * Author: Gavin Lyons
 
 libraries
 --------------------------
 * https://github.com/avishorp/TM1637
 *  Version 1.1.0
-*  TM1637Display.h // Tm1637 module
+*  TM1637Display.h // to drive the Tm1637 module
 
-*  https://github.com/JChristensen/JC_Button
-*  Version 2.0-1
-*  JC_Button.h // push button lib
 
 Software Used
 ------------------
