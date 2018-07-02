@@ -2293,6 +2293,7 @@ Source: http://download.siliconexpert.com/pdfs/2005/02/24/Semi_Ap/2/VSH/Resistor
 <part name="R1" library="pot" library_urn="urn:adsk.eagle:library:331" deviceset="3RP/1610N" device="" package3d_urn="urn:adsk.eagle:package:22726/1" value="10k"/>
 <part name="S2PUSH-BUTTON" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="MOMENTARY-SWITCH-SPST" device="-PTH-6.0MM" package3d_urn="urn:adsk.eagle:package:40163/1" value=""/>
 <part name="S1ON-OFF" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="MOMENTARY-SWITCH-SPST" device="-PTH-6.0MM" package3d_urn="urn:adsk.eagle:package:40163/1" value=""/>
+<part name="S3ON-OFF" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="MOMENTARY-SWITCH-SPST" device="-PTH-6.0MM" package3d_urn="urn:adsk.eagle:package:40163/1" value=""/>
 <part name="U$1" library="Arduino-clone" deviceset="NANO" device=""/>
 <part name="R2" library="eagle-ltspice" library_urn="urn:adsk.eagle:library:217" deviceset="R" device="0204/7" package3d_urn="urn:adsk.eagle:package:13274/1" value="220"/>
 </parts>
@@ -2310,6 +2311,7 @@ Source: http://download.siliconexpert.com/pdfs/2005/02/24/Semi_Ap/2/VSH/Resistor
 <instance part="R1" gate="G$1" x="-2.54" y="68.58"/>
 <instance part="S2PUSH-BUTTON" gate="G$1" x="71.12" y="86.36"/>
 <instance part="S1ON-OFF" gate="G$1" x="-17.78" y="91.44"/>
+<instance part="S3ON-OFF" gate="G$1" x="-10.16" y="38.1" rot="R90"/>
 <instance part="U$1" gate="G$1" x="33.02" y="68.58"/>
 <instance part="R2" gate="G$1" x="53.34" y="76.2"/>
 </instances>
@@ -2331,9 +2333,8 @@ Source: http://download.siliconexpert.com/pdfs/2005/02/24/Semi_Ap/2/VSH/Resistor
 <wire x1="-2.54" y1="55.88" x2="10.16" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="-2.54" y1="63.5" x2="-2.54" y2="55.88" width="0.1524" layer="91"/>
 <junction x="-2.54" y="55.88"/>
-<pinref part="TM1637" gate="-3" pin="S"/>
-<wire x1="50.8" y1="20.32" x2="-10.16" y2="20.32" width="0.1524" layer="91"/>
-<wire x1="-10.16" y1="20.32" x2="-10.16" y2="55.88" width="0.1524" layer="91"/>
+<pinref part="S3ON-OFF" gate="G$1" pin="2"/>
+<wire x1="-10.16" y1="43.18" x2="-10.16" y2="55.88" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
@@ -2411,6 +2412,15 @@ Source: http://download.siliconexpert.com/pdfs/2005/02/24/Semi_Ap/2/VSH/Resistor
 <wire x1="45.72" y1="25.4" x2="45.72" y2="63.5" width="0.1524" layer="91"/>
 <pinref part="U$1" gate="G$1" pin="D4"/>
 <wire x1="45.72" y1="63.5" x2="43.18" y2="63.5" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$11" class="0">
+<segment>
+<pinref part="TM1637" gate="-3" pin="S"/>
+<wire x1="50.8" y1="20.32" x2="-10.16" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="-10.16" y1="20.32" x2="-10.16" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="-10.16" y1="33.02" x2="-10.16" y2="30.48" width="0.1524" layer="91"/>
+<pinref part="S3ON-OFF" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$7" class="0">

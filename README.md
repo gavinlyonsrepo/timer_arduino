@@ -7,7 +7,7 @@ Overview
 Output time (mm:ss) to seven segment display(TM1637) and Audio to Buzzer.
 Input: Push button to start.  10K Pot used for time select.
 * Author: Gavin Lyons
-
+* Note: Two alternative designs tow different ino files.
 libraries
 --------------------------
 * https://github.com/avishorp/TM1637
@@ -29,9 +29,9 @@ The schematic drawn in eagle is in documents section.
 You will need following parts.
 
 >
-> Arduino based board with 4 digital pins and 1 analog pin. (eg nano)
+> Arduino based board with 4 digital pins and 1 analog pin. (In this case nano or Attiny85)
 >
-> Resistors: 220ohms 
+> Resistor: 220ohms 
 >
 > tm1637 seven segment module
 >
@@ -39,19 +39,24 @@ You will need following parts.
 >
 > one pushbutton
 >
-> two on/off SPST switches
+> One on/off SPST switches
 >
-> One buzzer
+> One piezo buzzer
 >
 
 Features
 ----------------------
-
-![ScreenShot schematic](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/eagle/tm1637.jpg)
-
 The user selects the countdown time (1-99 minutes) with the pot then starts with the pushbutton.
 Time remaining is displayed on seven segment display. When finished the buzzer is activated and done displayed on 7-seg.A switch can be used if user wishes to switch on/off display to save battery power.
 
+
+Design number one :  file:  timer_arudino.ino based on arduino nano.
+
+![ScreenShot schematic one ](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/eagle/tm1637.jpg)
+
+Design number two :  file:  timer_attiny85_arduino.ino based on attiny85.
+
+![ScreenShot schematic two ](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/eagle/tm16372.jpg)
  
 Copyright
 ---------

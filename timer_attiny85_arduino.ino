@@ -18,15 +18,15 @@
 //*************************** GLOBALS ********************
 
 // TM1637 Module connection pins (Digital Pins)
-#define CLK 5
-#define DIO 4
+#define CLK PB3
+#define DIO PB4
 TM1637Display display(CLK, DIO);
 
 //buzzer pin
-int buzzer = 9;//the pin of the active buzzer
+int buzzer = PB1;//the pin of the active buzzer
 
 // Button
-#define buttonPin 2
+#define buttonPin PB0
 int buttonState;             // the current reading from the input pin
 int lastButtonState = HIGH;   // the previous reading from the input pin
 // the following variables are unsigned longs because the time, measured in
@@ -42,9 +42,9 @@ int count_start = 0;
 // hold time selected in ms.
 unsigned long timeLimit = 0;
 
-//pot pin Analog A0
-int potPin = 0;
-// Varibles to Sample and smooth the A0 input from pot to reduce gitter on display
+//pot pin Analog A1
+int potPin = A1;
+// Varibles to Sample and smooth the A1 input from pot to reduce gitter on display
 // Define the number of samples to keep track of. The higher the number, the
 const int numReadings = 10;
 int readings[numReadings];      // the readings from the analog input
@@ -65,7 +65,7 @@ void setup() {
   digitalWrite(buttonPin, HIGH);
 
   //display setup
-  display.setBrightness(0x0c);
+  display.setBrightness(0x02);
   display.showNumberDecEx(0, 0x40, true);
   //buzzer
   pinMode(buzzer, OUTPUT); //initialize the buzzer pin as an output
