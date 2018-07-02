@@ -2,7 +2,7 @@
 Overview
 --------------------------------------------
 * Name: timer_arduino
-* Title :Micro-controller Countdown Timer
+* Title: Micro-controller Countdown Timer
 * Description: Countdown Timer: Range 1-99 minutes. 
 Output time (mm:ss) to seven segment display(TM1637) and Audio to Buzzer.
 Input: Push button to start.  10K Pot used for time select.
@@ -48,7 +48,7 @@ You will need following parts.
 Features
 ----------------------
 The user selects the countdown time (1-99 minutes) with the pot then starts with the pushbutton.
-Time remaining is displayed on seven segment display. When finished the buzzer is activated and done displayed on 7-seg.A switch can be used if user wishes to switch on/off display to save battery power.
+Time remaining is displayed on seven segment display. When finished the buzzer is activated and done displayed on 7-seg.
 Two alternative designs, two different ino files and schematics. Design one uses the nano, design two the attiny85. 
 
 Design number one :  file:  timer_arduino.ino based on arduino nano.
