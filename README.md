@@ -56,6 +56,8 @@ Design number one :  file:  timer_arduino.ino based on arduino nano.
 ![ScreenShot schematic one ](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/eagle/tm1637.jpg)
 
 Design number two :  file:  timer_attiny85_arduino.ino based on attiny85.
+The current consumption of this circuit is 9mA in countdown state and 11mA in alarm state.
+The brightness if display is set to a low setting in the program.
 
 ![ScreenShot schematic two ](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/eagle/timer16372.jpg)
  
