@@ -2,12 +2,13 @@
 Overview
 --------------------------------------------
 * Name: timer_arduino
-* Title : Countdown Timer, arduino based. 
+* Title :Micro-controller Countdown Timer
 * Description: Countdown Timer: Range 1-99 minutes. 
 Output time (mm:ss) to seven segment display(TM1637) and Audio to Buzzer.
 Input: Push button to start.  10K Pot used for time select.
 * Author: Gavin Lyons
-* Note: Two alternative designs tow different ino files.
+* Note: Two alternative designs, two different ino files.
+
 libraries
 --------------------------
 * https://github.com/avishorp/TM1637
@@ -48,15 +49,15 @@ Features
 ----------------------
 The user selects the countdown time (1-99 minutes) with the pot then starts with the pushbutton.
 Time remaining is displayed on seven segment display. When finished the buzzer is activated and done displayed on 7-seg.A switch can be used if user wishes to switch on/off display to save battery power.
+Two alternative designs, two different ino files and schematics. Design one uses the nano, design two the attiny85. 
 
-
-Design number one :  file:  timer_arudino.ino based on arduino nano.
+Design number one :  file:  timer_arduino.ino based on arduino nano.
 
 ![ScreenShot schematic one ](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/eagle/tm1637.jpg)
 
 Design number two :  file:  timer_attiny85_arduino.ino based on attiny85.
 
-![ScreenShot schematic two ](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/eagle/tm16372.jpg)
+![ScreenShot schematic two ](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/eagle/timer16372.jpg)
  
 Copyright
 ---------
