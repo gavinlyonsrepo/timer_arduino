@@ -44,6 +44,8 @@ You will need following parts.
 >
 > One piezo buzzer
 >
+> oNE 100nF capacitor
+>
 
 Features
 ----------------------
