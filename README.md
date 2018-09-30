@@ -7,7 +7,7 @@ Overview
 Output time (mm:ss) to seven segment display(TM1637) and Audio to Buzzer.
 Input: Push button to start.  10K Pot used for time select.
 * Author: Gavin Lyons
-* Note: Two alternative designs, two different ino files.
+* Note: Two alternative designs, two different ino files. One with Attiny85 IC the other with an arduino nano. 
 
 libraries
 --------------------------
@@ -59,7 +59,7 @@ Design number one :  file:  timer_arduino.ino based on arduino nano.
 
 Design number two :  file:  timer_attiny85_arduino.ino based on attiny85.
 The current consumption of this circuit is 9mA in countdown state and 11mA in alarm state.
-The brightness if display is set to a low setting in the program.
+The brightness of display is set to a low setting in the program.
 
 ![ScreenShot schematic two ](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/eagle/timer16372.jpg)
  
