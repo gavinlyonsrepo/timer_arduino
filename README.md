@@ -34,7 +34,7 @@ You will need following parts.
 >
 > Resistor: 220ohms 
 >
-> tm1637 seven segment module
+> tm1637 seven segment I2C module
 >
 > one 10 k pot
 >
@@ -46,6 +46,9 @@ You will need following parts.
 >
 > oNE 100nF capacitor
 >
+
+tm1637 7-segment I2C module.
+![module ](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/image/tm1637.jpg)
 
 Features
 ----------------------
