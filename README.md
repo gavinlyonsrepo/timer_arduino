@@ -1,3 +1,15 @@
+[![Website](https://img.shields.io/badge/Website-Link-blue.svg)](https://gavinlyonsrepo.github.io/)  [![Rss](https://img.shields.io/badge/Subscribe-RSS-yellow.svg)](https://gavinlyonsrepo.github.io//feed.xml)  [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/paypalme/whitelight976)
+
+
+Table of contents
+---------------------------
+
+  * [Table of contents](#table-of-contents)
+  * [Overview](#overview)
+  * [Library](#library)
+  * [Parts List](#parts-list)
+  * [Features](#features)
+
 
 Overview
 --------------------------------------------
@@ -9,18 +21,9 @@ Input: Push button to start.  10K Pot used for time select.
 * Author: Gavin Lyons
 * Note: Two alternative designs, two different ino files. One with Attiny85 IC the other with an arduino nano. 
 
-libraries
+Library
 --------------------------
-* https://github.com/avishorp/TM1637
-*  Version 1.1.0
-*  TM1637Display.h // to drive the Tm1637 module
-
-
-Software Used
-------------------
-Arduino 1.8.5
-
-Eagle 9.0.1
+*  TM1637Display.h to drive the Tm1637 module   Version 1.1.0  [ link]( https://github.com/avishorp/TM1637)
 
 
 Parts List
@@ -65,10 +68,3 @@ The current consumption of this circuit is 9mA in countdown state and 11mA in al
 The brightness of display is set to a low setting in the program.
 
 ![ScreenShot schematic two ](https://github.com/gavinlyonsrepo/timer_arduino/blob/master/documentation/eagle/timer16372.jpg)
- 
-Copyright
----------
-Copyright (C) 2018 Gavin Lyons 
-see LICENSE.md in documentation section 
-for more details
-
